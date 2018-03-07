@@ -259,6 +259,7 @@ sbtResolve() {
   # echo "### sbtResolve: $SBT_CMD -no-colors $sbtArgs " "${scalaVersionTasks[@]}" "\"$1\" % \"$2\" % \"$3\" cross CrossVersion.$cross"
   travis_fold_start resolve "Resolving \"$1\" % \"$2\" % \"$3\" cross CrossVersion.$cross"
   $SBT_CMD -no-colors $sbtArgs "${scalaVersionTasks[@]}" \
+    "set resolvers in Global += \"scala-pr\" at \"$integrationRepoUrl\"" \
     "set libraryDependencies := Seq(\"$1\" % \"$2\" % \"$3\" cross CrossVersion.$cross)" \
       'show update'
   travis_fold_end resolve
