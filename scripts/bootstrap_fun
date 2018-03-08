@@ -51,7 +51,7 @@ buildPartest() {
   else
     update scala scala-partest "$PARTEST_REF" && gfxd
     doc="$(docTask $PARTEST_BUILT)"
-    sbtBuild 'set version :="'$PARTEST_VER'"' 'set VersionKeys.scalaXmlVersion := "'$XML_VER'"' $clean "$doc" test "${buildTasks[@]}"
+    sbtBuild 'set version :="'$PARTEST_VER'"' 'set VersionKeys.scalaXmlVersion := "'$XML_VER'"' $clean "$doc" 'set scalacOptions := scalacOptions.value.filterNot(_.contains("fatal-warn"))' test "${buildTasks[@]}"
     PARTEST_BUILT="yes"
   fi
 }

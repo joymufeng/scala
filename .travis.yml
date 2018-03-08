@@ -31,7 +31,7 @@ jobs:
         # currently, not touching PR validation
         # (also, we couldn't even, because the password to publish to artifactory is not there :-/)
         if: type != pull_request
-        env:
+        env: 
           - forceBuildModules=yes # to test the change
         script:
           - source scripts/common
